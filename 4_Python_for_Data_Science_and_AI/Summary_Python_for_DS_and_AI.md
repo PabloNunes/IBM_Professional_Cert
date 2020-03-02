@@ -53,3 +53,29 @@
 - The for iterate according to the range associated.
 - Using enumerate serves a function to numerate each part of the list
 - The while only stops when the condition is met!
+
+## Functions
+- Functions take some input, process, and give a certain output or not.
+- It is a piece of code that can be reused
+- Python has a lot of built-in functions 
+- Using triple quotes show us the doucmentation string, it shows using `help(function)`
+- A function can have multiple parameters
+- To mock a function, you can use `pass` in the body
+- If a function returns nothing, in Python it returns a None
+- It is possible to put a variable number of arguments using the `*`.
+  - Ex: `def test_func(*names):`
+- Global Scope vs. Local Scope
+
+## Objects and Classes
+- Object has a type and is an instance of a particular type.
+- A method interact with a object.
+- Classes define objects
+- Using the `def __init__` makes the constructor of a class
+- The `self` interact internaly with some data of the object 
+
+## Manipulate Files
+- We can use the python open function to read and obtain the data of objects.
+- We should always close our files
+- Using the command `with` automatically closes files for us.
+- We can use the argument `r` to read, and `w` to write to the file. The argument `a` to append to the file.
+- 
