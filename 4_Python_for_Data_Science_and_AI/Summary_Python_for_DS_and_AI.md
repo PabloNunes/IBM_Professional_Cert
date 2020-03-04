@@ -78,4 +78,31 @@
 - We should always close our files
 - Using the command `with` automatically closes files for us.
 - We can use the argument `r` to read, and `w` to write to the file. The argument `a` to append to the file.
-- 
+
+## Pandas
+- `import pandas as pd`
+- You can use the `read_csv` function to read csv files or `read_excel` to read excel files
+- Pandas use a dataframe to store and to process data
+- Dataframes can be created with dictionaries as well
+- You can create new dataframes by listing some collumns present in a bigger dataframe
+- `loc` vs `iloc` vs `ix`
+  - `loc` takes the position and collumn name. Ex: `df.loc[0,'Artist']: 'Michael Jackson'`
+  - `iloc` takes the positions in integers. Ex: `df.loc[0,0]: 'Michael Jackson'`
+  - `ix` looks for a label, if does not find, returns an integer. It is deprecated.
+  - It is possible to use `loc` and `iloc` to slice a dataframe
+    - `new_df = df.loc[0:2, 'Artist':'Released]'`
+    - `new_df = df.iloc[0:2, 0:3]'`
+- List Unique elements: `.unique()`
+- Select with conditiions: `df1 = df[df['Released']>=1980]`
+  
+## Numpy
+- Numpy has a `numpy.ndarray` type and has a unique type inside it `int64`
+- You can perform simple operations and linear algebra operations
+- You can generate mathematical functions lie `np.sin()` or make a linear space with `np.linspace()`
+- `A.shape` is useful to know the dimensions of the matrix
+
+## API
+- An API let two pieces of software talking to each other
+- Representational State Transfer APIs or REST API are API that take usage of the Internet to use more resources
+
+
