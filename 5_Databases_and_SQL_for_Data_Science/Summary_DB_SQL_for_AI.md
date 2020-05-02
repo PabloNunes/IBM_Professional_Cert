@@ -36,3 +36,29 @@
   - Can order numbers
 
 - Grouping Result Sets
+  - Some SELECT statements can have duplicate values
+  - Using the distinct modifier, takes off all the duplicates
+  - "SELECT DISTINCT(Country) FROM Author"
+  - Can be used the Group by clause to make the count for how many times a key appear
+  - We can use conditions to show the results of the Query.
+
+- Built-in Functions
+  - Most DBs come with built-in SQL functions
+  - It is possible to create functions
+  - Can speed up data procvessing
+  - Reduce the amount of data to be retrieved
+  - Aggregate or column functions
+    - In: The entire column; Out: Single Value
+    - Sum, Min, Max, Avg
+  - Scalar functions: Perform operations on every input value
+  - String functions
+  - Most databases have built-in functions for Date and Time
+  - We can use these functions with count and where
+
+- Sub-Queries and Nested Selects
+  - Sub-Queries: A query inside another query
+
+- Working with Multiple Tables
+  - Sub-Queries
+  - Implicit JOIN
+  - JOIN operators (INNER JOIN, OUTER JOIN)
