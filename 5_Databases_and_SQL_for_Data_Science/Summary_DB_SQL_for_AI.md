@@ -62,3 +62,11 @@
   - Sub-Queries
   - Implicit JOIN
   - JOIN operators (INNER JOIN, OUTER JOIN)
+
+- Python
+  - SQL APIs
+  - DB-API
+    - Each one have a specific use
+    - Connection Objects
+    - Cursor Objects (Control the database)
+  - 
