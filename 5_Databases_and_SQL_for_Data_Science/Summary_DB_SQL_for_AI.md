@@ -69,4 +69,10 @@
     - Each one have a specific use
     - Connection Objects
     - Cursor Objects (Control the database)
-  - 
+  - IBM API
+    - Using SQL
+      - *var = ibm_db.exec_immediate(conn, table commands)*
+      - *ibm_db.fetch_both(var)*
+    - Using Pandas
+      - *pconn = ibm_db_dbi.Connection(conn)*
+      - *df = pandas.read_sql(table query, pconn)*
