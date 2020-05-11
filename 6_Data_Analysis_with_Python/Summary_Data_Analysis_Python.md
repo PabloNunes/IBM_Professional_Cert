@@ -98,4 +98,3 @@
     - Use the one-hot encoding to tranform categories in numerical values
 
 - Exploratory Data Analysis
-
