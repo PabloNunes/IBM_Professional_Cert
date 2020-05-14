@@ -98,3 +98,74 @@
     - Use the one-hot encoding to tranform categories in numerical values
 
 - Exploratory Data Analysis
+  - The main question of this step: *What are the characteristcs that have the most impact on the carm price?*
+  - Descriptive Statistics
+    - We use explore our data before using it. Using Descriptive Statistics helps us to understand it.
+    - Using the describe function give us a summary for our dataset.
+    ```python
+    df.describe()
+    ```
+    - Using the Value Counts function give us a sum for our dataset.
+    ```python
+    count_data = df["to_count"].value_counts()
+    count_data.rename(columns = {'to_count': 'value'}, inplce = True )
+    count_data.index.name = 'Category'
+    ```
+    - Using Box Plots is easy to see the outliers.
+    ```python 
+    sns.boxplot(x="X", y="Y", data=df)
+    ```
+    - Scatter Box helps us the see the relation to two variables
+    ```python
+    plt.scatter(x,y)
+    ```
+  - GroupBy
+    - Used on categorical variables
+    - Single or multiple variables
+    ```python
+    df_test = df[['Category', 'Sub-category', 'Variable']]
+    df_grp = df_test.groupby(['Category', 'Sub-category'], as_index = False).mean()
+    df_grp
+    ```
+    - Pivot
+    ```python
+    df_pivot = df_grp.pivot(index='Category', columns='Sub-category')
+    ```
+    - Heatmap
+    ```python
+    plt.pcolor(df_pivot, cmap='RdBu')
+    plt.colorbar()
+    plt.show()
+    ```
+  - Correlation
+    - Measures to what extent different vairables are independent
+    - **Correlation doesn't imply causation.**
+    - Using the Seaborn Linear Regression
+    ```python
+    sns.regplot()
+    ```
+    - Pearson Correlation
+      - Measure the strength of the correlation between two features
+      - It gives: **Correlation coeficient** and **P-value**
+      - To Correlation coeficient:
+        - Close to +1: Positive relationship
+        - Close to 0: No relationship
+        - Close to -1: Negative relationship
+      - To P-value:
+        - P-value < 0.001: Strong certainty in the result
+        - P-value < 0.05: Moderate certainty in the result
+        - P-value < 0.1: Weak certainty in the result
+        - P-value > 0.1: No certainty in the result
+      - Syntax:
+      ```python
+      pearson_coef, p_value = status.peasonr(df['Variable_1'], df['Variable_2'])
+      ```
+    - ANOVA - Analysis of Variance
+      - Finding correlation between different groups of a categorical variable
+      - ANOVA returns: 
+        - F-test score
+        - p-value
+      - Large F-test imply in strong correlation and Small imply in a weak one. (Using the extremes and comparing categories)
+      - Syntax:
+      ```pyrhon
+      anova_results = stats.f_oneway(grouped_anova.get_group("low_tier")["price"], grouped_anova.get_group("high_tier")["price"])```
