@@ -225,10 +225,10 @@
     - Using sklearn to fit a simple linear regression, we have:
   
     ```python
-    from sklearn.linear_model import LinearRegression 
+    from sklearn.linear_model import LinearRegression
 
     lm=LinearRegression() # Using the Linear Regression function from SkLearn to train
-    X = df[['Independent_variable']] # Picking the X, for the inpendendent variable 
+    X = df[['Independent_variable']] # Picking the X, for the inpendendent variable
     Y = df[['result']] # Picking the Y
 
     lm.fit(X,Y) # Fitting the X to Y, using the SkLearn function
@@ -238,8 +238,9 @@
     ```
 
     - Using sklearn to train a multiple linear regression:
+
     ```python
-    from sklearn.linear_model import LinearRegression 
+    from sklearn.linear_model import LinearRegression
 
     lm = LinearRegression() # Using the Linear Regression function from SkLearn to train
     X = df[['Independent_variable_1','Independent_variable_2','Independent_variable_3','Independent_variable_4']] # Picking the Xs, for the inpendendent variables
@@ -252,12 +253,12 @@
     ```
 
   - Model Evaluation Using Visualization
-    -  Regression Plot
-       -  Shows the relationship between two variables
-       -  Strength of correlation
-       -  Direction of relationship
-       -  Uses the combination of Scatterplot and the fitted linear regression
-       -  Plotting the regression plot
+    - Regression Plot
+      - Shows the relationship between two variables
+      - Strength of correlation
+      - Direction of relationship
+      - Uses the combination of Scatterplot and the fitted linear regression
+      - Plotting the regression plot
 
         ```python
         import seaborn as sns
@@ -267,9 +268,9 @@
 
         ```
 
-      - Residual Plot
-        - Represents the error bwtween the actual value and the real value
-        - Any patterns shown here are a sign of errors while modeling the prediction (Like a curvature)
+    - Residual Plot
+      - Represents the error bwtween the actual value and the real value
+      - Any patterns shown here are a sign of errors while modeling the prediction (Like a curvature)
         - Plotting:
 
          ```python
@@ -287,14 +288,14 @@
         import seaborn as sns
 
         value_axis = sns.displot(df["result"], hist = "False", color = "r", label = "Actual Value") # Using the seaborn library to make the first the distribution plot
-        sns.displot(Yhat, hist = "False", color = "b", label = "Predicted Values", ax = value_axis) # Using the seaborn library to make the distribution plot 
+        sns.displot(Yhat, hist = "False", color = "b", label = "Predicted Values", ax = value_axis) # Using the seaborn library to make the distribution plot
 
         ```
 
-   - Polynomial Regression and Pipelines
-     - The relations between variables and results can be in polynomial order
-     - Using the ```np.polyfit``` we can use polynomial regression
-     - Using scikit learn:
+  - Polynomial Regression and Pipelines
+    - The relations between variables and results can be in polynomial order
+    - Using the ```np.polyfit``` we can use polynomial regression
+    - Using scikit learn:
 
      ````python
      from sklearn.preprocessing import PolynomialFeatures
@@ -303,9 +304,9 @@
      pr.fit_transform([1,2], include_bias = False) # Transformed version of our features
      ````
 
-     - Pre-Processing
-       - Normalize features simultaneously
-       - Scikit learn:
+    - Pre-Processing
+      - Normalize features simultaneously
+      - Scikit learn:
 
        ````python
         from sklearn.preprocessing import StandardScaler
@@ -318,6 +319,7 @@
     - Pipeline
       - Pipelines sequentially transform a series of transformations. The last step carries a prediction.
       - In scikit Learn:
+
       ````python
       # Importing all the libraries
       from sklearn.preprocessing import PolynomialFeatures
@@ -338,7 +340,6 @@
       y_hat = pipe.predict(X[['Feature_1', 'Feature_2', 'Feature_3']])
       ````
 
-
   - Measures for In-Sample Evaluation
     - A way to numerically determine how good the model fits on the dataset
     - Two important measures to determine the fit are:
@@ -351,6 +352,7 @@
 
     mean_squared_error(df["price"], Y_predict_simple_fit) # Using the Scikit Learn function to MSE
     ```
+
     - R-Squared (R²)
       - Coefficient of Determination
       - How close is the data to the fitted line in percentage
@@ -364,9 +366,104 @@
 
       lm.score(X,y) # Testing the R²
       ```
+
   - Decision Making and Predictions
     - Decision Making
       - Do the Predicted Values make sense?
       - Visualization
       - Numerical measures for evaluation
       - Comparing Models
+
+- Model Evaluation
+  - Tells how our model performs
+  - The solution is to split our data in test set and training set
+  - A popular way to split our data is the ```train_test_split()```
+  
+  ```python
+  from sklearn.model_selection import train_test_split
+
+  x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size = 0.3, random_state = 0) # Splitting our data in 30% test and 70% train
+  ```
+
+  - Generalization error
+    - Is a measure of how well our data does at predicting previously unseen data
+    - The error using the testing data is a approximation of this error
+  - Cross Validation
+    - Uses folds in data to test between them and get a more effective use of the data.
+    - In Sklearn we use ```cross_val_score()```
+
+    ```python
+    from sklearn.model_selection import cross_val_score
+
+    scores = cross_val_score(lr, x_data, y_data, cv=3) # Calculate a array of cross validation scores
+    np.mean(score) # Average the scores
+    ```
+
+    - It is possible to use the ```cross_val_predict()```, returning the prediction.
+
+  - Overfitting, Underfitting and Model Selection
+    - Underfitting: The model isn't complex enough to fit the data
+    - Overfitting: The model tracks the data instead of generalizing the function. Tracking the noise.
+    - Model Selection. Use the MSE with the training error and test error, and use where the test error is lower.
+    - The noise in models is impossible to predict, because of this this generates a error margin and is part of indeducible errors.
+    - To make this into a automated process, in python:
+
+    ````python
+    r_2_test = [] # Empty array for our R² test to plot
+    poly_order = [1,2,3,4]
+
+    for n in poly_order:
+      # Looping to get four magnitudes for our model, making each loop a PolynomialFeatures object with a different order.
+      poly_reg = PolynomialFeatures(degree = n)
+
+      # Making our linear features into polynomial ones
+      x_train_preg = poly_reg.fit_transform(x_train[['Feature']])
+      x_test_preg = poly_reg.fit_transform(x_test[['Feature']])
+
+      # Fitting this features to our target
+      lr.fit(x_train_reg, y_train)
+
+      # Using the R² results into the array to check the results
+      r_2_test.append(lr.score(x_test_preg, y_test))
+    ````
+
+  - Ridge Regression
+    - It prevents overfitting
+    - Uses a coeficient called alpha, which makes the higher order coeficients to not have as a big of an impact.
+    - A small alpha does not help with overfitting and a big alpha makes the function underfit.
+    - To select a good alpha we use cross-validation
+    - In Python:
+
+    ````python
+    from sklearn.linear_model import Ridge
+
+    RidgeModel = Ridge(alpha = 0.1) # A Ridge object with a 0.1 alpha
+    RidgeModel.fit(X,y) # Fitting
+
+    Y_hat = RidgeModel.predict(X) # Using the model trying to predict
+
+    ````
+
+    - We use a validation Data to test for parameters. Is a part of the data.
+
+  - Grid Search
+    - Terms like alpha are not part of training, are hyperparameters.
+    - Scikit Learn has means to iterate them using cross validation called Grid Search
+    - To this, we do a training set, validation set and a test set.
+    - In Python:
+
+    ````python
+    from sklearn.linear_model import Ridge
+    from sklearn.model_selection import GridSearchCV
+
+    parameters = [{'alpha': [0.01, 0.1, 1, 10, 100], 'normalize': [True, False]}] # Dictionary of possible hyperparameters
+    RR = Ridge() # A Ridge object
+
+    Grid = GridSearchCV(RR, alpha_parameters, cv = 4) # A GridSearch object
+
+    Grid.fit(x_data[['parameters_1','parameters_2','parameters_3','parameters_4']], y_data) # Training the model
+    Grid.best_estimator_ # Giving the best estimator back
+
+    scores = Grid.cv_results_
+    scores['mean_test_score'] # Showing the results
+    ````
