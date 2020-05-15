@@ -115,7 +115,12 @@
     ```
 
   - One-hot enconding
-    - Use the one-hot encoding to tranform categories in numerical values
+    - Use the one-hot encoding to transform categories in numerical values
+
+    ```python
+    s = pd.Series(list('abca')) # Creates a series in Pandas
+    pd.get_dummies(s) # Creates the encoder
+    ```
 
 - Exploratory Data Analysis
   - The main question of this step: *What are the characteristcs that have the most impact on the carm price?*
@@ -214,4 +219,154 @@
   - A model can be thought of as a mathematical equation used to predict a value given one or other values.
   - Relating independent variables to dependent ones
   - Linear Regression and Multiple Linear Regression
-    - 
+    - Linear Regression refers to independent Variables to make a prediction
+    - We use some data to fit the model and other part to test the fit
+    - The function for a simple linear regression is: Y = b0 + b1*x
+    - Using sklearn to fit a simple linear regression, we have:
+  
+    ```python
+    from sklearn.linear_model import LinearRegression 
+
+    lm=LinearRegression() # Using the Linear Regression function from SkLearn to train
+    X = df[['Independent_variable']] # Picking the X, for the inpendendent variable 
+    Y = df[['result']] # Picking the Y
+
+    lm.fit(X,Y) # Fitting the X to Y, using the SkLearn function
+
+    y_hat = lm.predict(X) # Using the model to have a prediction
+
+    ```
+
+    - Using sklearn to train a multiple linear regression:
+    ```python
+    from sklearn.linear_model import LinearRegression 
+
+    lm = LinearRegression() # Using the Linear Regression function from SkLearn to train
+    X = df[['Independent_variable_1','Independent_variable_2','Independent_variable_3','Independent_variable_4']] # Picking the Xs, for the inpendendent variables
+    Y = df[['result']] # Picking the Y
+
+    lm.fit(X,Y) # Fitting the X to Y, using the SkLearn function
+
+    y_hat = lm.predict(X) # Using the model to have a prediction
+
+    ```
+
+  - Model Evaluation Using Visualization
+    -  Regression Plot
+       -  Shows the relationship between two variables
+       -  Strength of correlation
+       -  Direction of relationship
+       -  Uses the combination of Scatterplot and the fitted linear regression
+       -  Plotting the regression plot
+
+        ```python
+        import seaborn as sns
+
+        sns.regplot(x = "independent_variable", y = "result", data = df) # Using the seaborn library to plot the regression plot
+        plt.ylim(0,) # Showing the plot
+
+        ```
+
+      - Residual Plot
+        - Represents the error bwtween the actual value and the real value
+        - Any patterns shown here are a sign of errors while modeling the prediction (Like a curvature)
+        - Plotting:
+
+         ```python
+        import seaborn as sns
+
+        sns.residplot(df["independent_variable"], df["result"]) # Using the seaborn library to plot the residual plot
+
+        ```
+
+      - Distribution Plots
+        - Shows the distribution under a area of the variable and the result
+        - Helps us to see the real values vs the predicted ones for the model and inacurracies
+
+        ```python
+        import seaborn as sns
+
+        value_axis = sns.displot(df["result"], hist = "False", color = "r", label = "Actual Value") # Using the seaborn library to make the first the distribution plot
+        sns.displot(Yhat, hist = "False", color = "b", label = "Predicted Values", ax = value_axis) # Using the seaborn library to make the distribution plot 
+
+        ```
+
+   - Polynomial Regression and Pipelines
+     - The relations between variables and results can be in polynomial order
+     - Using the ```np.polyfit``` we can use polynomial regression
+     - Using scikit learn:
+
+     ````python
+     from sklearn.preprocessing import PolynomialFeatures
+
+     pr = PolynomialFeatures (degree = 2) # Set the second order for our model
+     pr.fit_transform([1,2], include_bias = False) # Transformed version of our features
+     ````
+
+     - Pre-Processing
+       - Normalize features simultaneously
+       - Scikit learn:
+
+       ````python
+        from sklearn.preprocessing import StandardScaler
+
+        Scale = StandardScaler() # Make the object
+        Scale.fit(x_data[['Feature_1','Feature_2']]) # Fit the data
+        x_scale = Scale.transform(x_data[['Feature_1','Feature_2']])) # Transform the data into a new dataframe
+       ````
+
+    - Pipeline
+      - Pipelines sequentially transform a series of transformations. The last step carries a prediction.
+      - In scikit Learn:
+      ````python
+      # Importing all the libraries
+      from sklearn.preprocessing import PolynomialFeatures
+      from sklearn.linear_model import LinearRegression
+      from sklearn.preprocessing import StandardScaler
+      from sklearn.pipeline import Pipeline
+
+      # Creating a list of tuples, the first element has the name of the element, the second has a model constructor
+      Input = [('scale', StandardScaler(), ('polynomial', PolynomialFeatures(degree = 2),  ('mode', LinearRegression()))]
+
+      # Inputing this in a pipeline constructor
+      pipe = Pipeline(Input)
+
+      # Training the Pipeline
+      pipe.fit(df[['Feature_1', 'Feature_2', 'Feature_3']], y)
+
+      # Prediction
+      y_hat = pipe.predict(X[['Feature_1', 'Feature_2', 'Feature_3']])
+      ````
+
+
+  - Measures for In-Sample Evaluation
+    - A way to numerically determine how good the model fits on the dataset
+    - Two important measures to determine the fit are:
+      - Mean Squared Error (MSE)
+      - R-Squared (R²)
+    - Mean Squared Error: Take the squared of the diference of prediction and realily, sum all, and divide by the number of samples.
+
+    ```python
+    from sklearn.metrics import mean_squared_error
+
+    mean_squared_error(df["price"], Y_predict_simple_fit) # Using the Scikit Learn function to MSE
+    ```
+    - R-Squared (R²)
+      - Coefficient of Determination
+      - How close is the data to the fitted line in percentage
+      - Uses a formula: MSE of Regression Line / MSE of the average
+
+      ```python
+      X = df[['Independent_variable_1','Independent_variable_2','Independent_variable_3','Independent_variable_4']] # Picking the Xs, for the inpendendent variables
+      Y = df[['result']] # Picking the Y
+
+      lm.fit(X,Y) # Fitting the X to Y, using the SkLearn function
+
+      lm.score(X,y) # Testing the R²
+      ```
+  - Decision Making and Predictions
+    - Decision Making
+      - Do the Predicted Values make sense?
+      - Visualization
+      - Numerical measures for evaluation
+      - Comparing Models
