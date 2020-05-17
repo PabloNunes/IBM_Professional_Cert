@@ -200,7 +200,7 @@
       - Syntax:
 
       ```python
-      pearson_coef, p_value = status.peasonr(df['Variable_1'], df['Variable_2'])
+      pearson_coef, p_value = stats.peasonr(df['Variable_1'], df['Variable_2'])
       ```
 
     - ANOVA - Analysis of Variance
@@ -314,6 +314,18 @@
         Scale.fit(x_data[['Feature_1','Feature_2']]) # Fit the data
         x_scale = Scale.transform(x_data[['Feature_1','Feature_2']])) # Transform the data into a new dataframe
        ````
+
+    - Ridge Regression
+      - Uses a hyperparameter (Alpha) to help the model not to Overfit!
+      - In Scikit Learn:
+      ````python
+        from sklearn.linear_model import Ridge
+
+        ridge_obj = Ridge(alpha=0.1) # Creating the Ridge object and seeting its alpha to 0.1
+        ridge_obj.fit(x_train, y_train) # Fitting the features into a Ridge Model
+
+        ridge_obj.score(x_test, y_test) # The R² for this model
+      ````
 
     - Pipeline
       - Pipelines sequentially transform a series of transformations. The last step carries a prediction.
