@@ -43,3 +43,35 @@
 - Line Plot
   - A line plot is a type of plot which displays information as a series of datapoints connected by straight line segments.
   - The best case for a line plot, is when the data is a continous dataset
+
+## Basic Visualization Tools
+
+- Area Plots
+  - The Area plot is used to represent cumulated tools, using tools or percentages over time.
+  - Is based on the line plot
+  - Are stacked by default
+  - Using ```.plot(kind='area')```
+- Histograms
+  - Is the frequency distribution representation of a variable
+  - Using ```.plot(kind='area')``` or ```np.histogram(df)```
+- Bar Charts
+  - Used to compare the value of a variable at a given point in time
+  - Using ```.plot(kind='bar')``` or ```.plot(kind='barh')``` for horizontal bars
+- Pie Charts
+  - Is a circular and statistical graphic divided by slices to show numerical proportion
+  - Pie Chart is said to not show the information with any consistency.
+- Box Plot
+  - Plots statistically representing the distribuition of tha data given five main dimensions.
+  - For instance:
+
+  ![Box Plot example](readme_imgs/boxplot.png)
+
+  - For each one:
+    - Mininum: The lowest data point in a variable
+    - First Quartile: 25% of the data is below this point
+    - Median: The median of the data
+    - Third Quastile: 75% of the data is below this point
+    - Maximum: The highest point in the sorted data
+- Scatter Plot
+  - Is a plot which compares teo variables against each other.
+  - Is useful to note correlations
