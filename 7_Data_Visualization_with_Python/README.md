@@ -75,3 +75,20 @@
 - Scatter Plot
   - Is a plot which compares teo variables against each other.
   - Is useful to note correlations
+
+## Advanced Visualization Tools
+
+- Waffle Charts
+  - Is a visualization created to display progress towards goals
+  - Thsus making a representation based on tiles, so the more the contribuition, more tiles
+  - MatPlotLib does not have native support for Waffle Charts
+- Word Clouds
+  - Is a depiction of the frequency of different words in some textual data
+  - MatPlotLib does not have native support, but we can use other libs
+- Seaborn and Regression plots
+  - Seaborn is based on Matplotlib
+  - It optimizes writing code comparting to MatPlotLib
+
+## Visualizing Geospatial Data
+
+- Folium
