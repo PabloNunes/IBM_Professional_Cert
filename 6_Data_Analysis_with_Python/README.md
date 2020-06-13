@@ -114,7 +114,7 @@
     df["to_normalize"] = mean/std
     ```
 
-  - One-hot enconding
+  - One-hot encoding
     - Use the one-hot encoding to transform categories in numerical values
 
     ```python
@@ -123,7 +123,7 @@
     ```
 
 - Exploratory Data Analysis
-  - The main question of this step: *What are the characteristcs that have the most impact on the carm price?*
+  - The main question of this step: *What are the characteristics that have the most impact on the carm price?*
   - Descriptive Statistics
     - We use explore our data before using it. Using Descriptive Statistics helps us to understand it.
     - Using the describe function give us a summary for our dataset.
@@ -136,7 +136,7 @@
 
     ```python
     count_data = df["to_count"].value_counts()
-    count_data.rename(columns = {'to_count': 'value'}, inplce = True )
+    count_data.rename(columns = {'to_count': 'value'}, inplace = True )
     count_data.index.name = 'Category'
     ```
 
@@ -177,7 +177,7 @@
     ```
 
   - Correlation
-    - Measures to what extent different vairables are independent
+    - Measures to what extent different variables are independent
     - **Correlation doesn't imply causation.**
     - Using the Seaborn Linear Regression
 
@@ -187,8 +187,8 @@
 
     - Pearson Correlation
       - Measure the strength of the correlation between two features
-      - It gives: **Correlation coeficient** and **P-value**
-      - To Correlation coeficient:
+      - It gives: **Correlation coefficient** and **P-value**
+      - To Correlation coefficient:
         - Close to +1: Positive relationship
         - Close to 0: No relationship
         - Close to -1: Negative relationship
@@ -228,7 +228,7 @@
     from sklearn.linear_model import LinearRegression
 
     lm=LinearRegression() # Using the Linear Regression function from SkLearn to train
-    X = df[['Independent_variable']] # Picking the X, for the inpendendent variable
+    X = df[['Independent_variable']] # Picking the X, for the independent variable
     Y = df[['result']] # Picking the Y
 
     lm.fit(X,Y) # Fitting the X to Y, using the SkLearn function
@@ -243,7 +243,7 @@
     from sklearn.linear_model import LinearRegression
 
     lm = LinearRegression() # Using the Linear Regression function from SkLearn to train
-    X = df[['Independent_variable_1','Independent_variable_2','Independent_variable_3','Independent_variable_4']] # Picking the Xs, for the inpendendent variables
+    X = df[['Independent_variable_1','Independent_variable_2','Independent_variable_3','Independent_variable_4']] # Picking the Xs, for the independent variables
     Y = df[['result']] # Picking the Y
 
     lm.fit(X,Y) # Fitting the X to Y, using the SkLearn function
@@ -269,7 +269,7 @@
         ```
 
     - Residual Plot
-      - Represents the error bwtween the actual value and the real value
+      - Represents the error between the actual value and the real value
       - Any patterns shown here are a sign of errors while modeling the prediction (Like a curvature)
         - Plotting:
 
@@ -282,7 +282,7 @@
 
       - Distribution Plots
         - Shows the distribution under a area of the variable and the result
-        - Helps us to see the real values vs the predicted ones for the model and inacurracies
+        - Helps us to see the real values vs the predicted ones for the model and inaccuracies
 
         ```python
         import seaborn as sns
@@ -319,10 +319,11 @@
     - Ridge Regression
       - Uses a hyperparameter (Alpha) to help the model not to Overfit!
       - In Scikit Learn:
+
       ````python
         from sklearn.linear_model import Ridge
 
-        ridge_obj = Ridge(alpha=0.1) # Creating the Ridge object and seeting its alpha to 0.1
+        ridge_obj = Ridge(alpha=0.1) # Creating the Ridge object and setting its alpha to 0.1
         ridge_obj.fit(x_train, y_train) # Fitting the features into a Ridge Model
 
         ridge_obj.score(x_test, y_test) # The R² for this model
@@ -342,7 +343,7 @@
       # Creating a list of tuples, the first element has the name of the element, the second has a model constructor
       Input = [('scale', StandardScaler(), ('polynomial', PolynomialFeatures(degree = 2),  ('mode', LinearRegression()))]
 
-      # Inputing this in a pipeline constructor
+      # Inputting this in a pipeline constructor
       pipe = Pipeline(Input)
 
       # Training the Pipeline
@@ -357,7 +358,7 @@
     - Two important measures to determine the fit are:
       - Mean Squared Error (MSE)
       - R-Squared (R²)
-    - Mean Squared Error: Take the squared of the diference of prediction and realily, sum all, and divide by the number of samples.
+    - Mean Squared Error: Take the squared of the difference of prediction and reality, sum all, and divide by the number of samples.
 
     ```python
     from sklearn.metrics import mean_squared_error
@@ -441,7 +442,7 @@
 
   - Ridge Regression
     - It prevents overfitting
-    - Uses a coeficient called alpha, which makes the higher order coeficients to not have as a big of an impact.
+    - Uses a coefficient called alpha, which makes the higher order coefficients to not have as a big of an impact.
     - A small alpha does not help with overfitting and a big alpha makes the function underfit.
     - To select a good alpha we use cross-validation
     - In Python:

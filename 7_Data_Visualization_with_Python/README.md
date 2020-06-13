@@ -1,6 +1,6 @@
 # Data Visualization with Python - Summary
 
-## Autor: Pablo Nunes
+## Author: Pablo Nunes
 
 ----
 
@@ -27,22 +27,22 @@
 - Best practices
   1. Less is more effective
   2. Less is more attractive
-  3. Less is more impactive
+  3. Less is more impacting
 
 ## Introduction to MatPlotLib
 
-- The MatPlotLib archtecture
+- The MatPlotLib architecture
   1. Backend Layer (FigureCanvas, Renderer, Event)
   2. Artist Layer (Artist)
   3. Scripting Layer (pyplot)
-- Basic Plottiing with MatPlotLib
+- Basic Plotting with MatPlotLib
   - MatPlotLib is very well supported
   - We going to use Jupyter Notebook
   - ```%matplotlib notebook``` can be used to plots update in real time
   - We can use Pandas with MatPlotLib, using ```.plot(kind="line")``` we have a plot with our dataframe and ```.plot(kind="hist")``` to have a histogram.
 - Line Plot
   - A line plot is a type of plot which displays information as a series of datapoints connected by straight line segments.
-  - The best case for a line plot, is when the data is a continous dataset
+  - The best case for a line plot, is when the data is a continuous dataset
 
 ## Basic Visualization Tools
 
@@ -61,16 +61,16 @@
   - Is a circular and statistical graphic divided by slices to show numerical proportion
   - Pie Chart is said to not show the information with any consistency.
 - Box Plot
-  - Plots statistically representing the distribuition of tha data given five main dimensions.
+  - Plots statistically representing the distribution of tha data given five main dimensions.
   - For instance:
 
   ![Box Plot example](readme_imgs/boxplot.png)
 
   - For each one:
-    - Mininum: The lowest data point in a variable
+    - Minimum: The lowest data point in a variable
     - First Quartile: 25% of the data is below this point
     - Median: The median of the data
-    - Third Quastile: 75% of the data is below this point
+    - Third Quartile: 75% of the data is below this point
     - Maximum: The highest point in the sorted data
 - Scatter Plot
   - Is a plot which compares teo variables against each other.
@@ -80,15 +80,21 @@
 
 - Waffle Charts
   - Is a visualization created to display progress towards goals
-  - Thsus making a representation based on tiles, so the more the contribuition, more tiles
+  - Thus making a representation based on tiles, so the more the contribution, more tiles
   - MatPlotLib does not have native support for Waffle Charts
 - Word Clouds
   - Is a depiction of the frequency of different words in some textual data
   - MatPlotLib does not have native support, but we can use other libs
 - Seaborn and Regression plots
   - Seaborn is based on Matplotlib
-  - It optimizes writing code comparting to MatPlotLib
+  - It optimizes writing code comparing to MatPlotLib
 
 ## Visualizing Geospatial Data
 
 - Folium
+  - A powerful library that helps creating types of Leaflet maps
+  - Enables binding of data to a map and passing visualization on the map
+  - Maps in Folium are interactive
+- Chorolopleth Maps
+  - Chorolopleth Maps are maps, which areas are shaded or patterned in proportion to the measurement of a statistical variable
+  - We can use Geojson

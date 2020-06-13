@@ -1,9 +1,12 @@
 # Databases and SQL for Data Science - Summary
+
 ## Made by Pablo Nunes
+
 ----
+
 - Introduction to DBs
   - SQL is a language used for relational databases to query data
-  - Data is colection of information
+  - Data is collection of information
   - Database is a repository of data, providing the functionality of adding, modifying and querying data.
 - Cloud Databases
   - Has some benefits especially Scalability and Recovery
@@ -30,9 +33,9 @@
 
 - Sort Result Sets
   - Order by clause
-  - Can be ordered alfabetically using "order by something"
-  - Can be ordered inverse alfabetically using "order by something desc"
-  - Can be used numbers to represent collumns
+  - Can be ordered alphabetically using "order by something"
+  - Can be ordered inverse alphabetically using "order by something desc"
+  - Can be used numbers to represent columns
   - Can order numbers
 
 - Grouping Result Sets
@@ -45,7 +48,7 @@
 - Built-in Functions
   - Most DBs come with built-in SQL functions
   - It is possible to create functions
-  - Can speed up data procvessing
+  - Can speed up data processing
   - Reduce the amount of data to be retrieved
   - Aggregate or column functions
     - In: The entire column; Out: Single Value
