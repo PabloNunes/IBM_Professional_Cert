@@ -67,3 +67,19 @@
   - To calculate the error, just compare the predicted vs reality, and average them.
   - Training Accuracy vs. Out-of-sample accuracy
   - K-fold cross validation
+- Multiple Linear Regression
+  - Uses multiple independent variables to predict a dependent variable
+  - Using a linear function, y = theta_0 + theta_1 * x_1 + theta_2 * x_2 + .... + theta_n * x_n or y = theta^t * X
+  - It serves to show a independent variable effectiveness and its impact.
+  - Calculate the theta
+    - Ordinary Least Squares
+    - Optimization Algorithm (Gradient Descent)
+- Non-Linear Regression
+  - When the relationship is real but not linear, we can use a non linear regression!
+  - It is important to use a regression that fits the data!
+  - A polynomial can be transformed into a linear regression model
+  - Using least squares!
+
+## Classification
+
+- K-Nearest Neighbor
